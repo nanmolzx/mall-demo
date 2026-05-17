@@ -8,4 +8,4 @@ WORKDIR /app
 COPY --from=build /app/mall-admin/target/mall-admin-*.jar app.jar
 EXPOSE 8080
 ENV SPRING_PROFILES_ACTIVE=railway
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-Xmx256m", "-Xms128m", "-XX:MaxMetaspaceSize=128m", "-XX:+UseSerialGC", "-XX:+HeapDumpOnOutOfMemoryError", "-jar", "app.jar"]

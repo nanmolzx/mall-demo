@@ -1,5 +1,9 @@
 server:
   port: ${PORT:8080}
+  shutdown: graceful
+  error:
+    include-message: always
+    include-stacktrace: always
 
 spring:
   datasource:
@@ -7,14 +11,9 @@ spring:
     username: ${MYSQL_USER}
     password: ${MYSQL_PASSWORD}
     druid:
-      initial-size: 5
-      min-idle: 5
-      max-active: 10
-      web-stat-filter:
-        exclusions: "*.js,*.jpg,*.png,*.css,*.ico,/druid/*"
-      stat-view-servlet:
-        login-username: druid
-        login-password: druid
+      initial-size: 1
+      min-idle: 1
+      max-active: 3
   redis:
     host: ${REDIS_HOST}
     port: ${REDIS_PORT}
